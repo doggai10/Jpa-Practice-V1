@@ -5,8 +5,10 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.FetchType.*;
+
 @Entity
-public class Member {
+public class Member extends BaseEntity {
 
     @Id @GeneratedValue
     @Column(name="MEMBER_ID")
@@ -16,7 +18,7 @@ public class Member {
     private String street;
     private String zipcode;
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member", fetch = LAZY)
     private List<Order> orders = new ArrayList<>();
 
     public Long getId() {
